@@ -73,6 +73,15 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  -- Bracets
+  'tpope/vim-surround',
+
+  'scrooloose/nerdtree',
+  'scrooloose/nerdcommenter',
+  'windwp/nvim-autopairs',
+
+  -- 'github/copilot.vim',
+  'HallerPatrick/py_lsp.nvim',
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   { -- LSP Configuration & Plugins
@@ -135,19 +144,17 @@ require('lazy').setup({
 
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
+    main = "ibl",
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
+    opts = {},
   },
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { 'nvim-telescope/telescope.nvim', tag = '0.1.4', dependencies = { 'nvim-lua/plenary.nvim' } },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -240,6 +247,14 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Dshvetsov config
+vim.spell.spelling = 'en_us'
+
+-- toggle NERDTree show/hide using <C-n> and <leader>nn
+vim.keymap.set("n", "<leader>nf", ":NERDTreeFocus<CR>", {noremap = true, desc = '[N]ERDTree [F]ocus'})
+-- reveal open buffer in NERDTree
+vim.keymap.set("n", "<leader>nl", ":NERDTreeFind<CR>", {noremap = true, desc= '[N]erdTree [L]ocate file'})
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -294,7 +309,7 @@ require('nvim-treesitter.configs').setup {
   auto_install = false,
 
   highlight = { enable = true },
-  indent = { enable = true, disable = { 'python' } },
+  indent = { enable = true , disable = { 'python' } },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -464,10 +479,10 @@ cmp.setup {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
+    -- ['<CR>'] = cmp.mapping.confirm {
+    --   behavior = cmp.ConfirmBehavior.Replace,
+    --   select = true,
+    -- },
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -493,5 +508,44 @@ cmp.setup {
   },
 }
 
+
+require('ibl').setup({
+  indent = {
+    char = '┊',
+  },
+  -- show_trailing_blankline_indent = false,
+
+})
+
+-- See help ft-python-indent
+vim.g.python_indent = {
+  open_paren = 0,
+  nested_paren = 'shiftwidth()',
+  closed_paren = {
+    align_last_line = false
+  }
+}
+
+
+-- auto-pair setup
+-- require('auto-pairs').setup({
+--   ignored_next_char = "[%w%.]" -- will ignore alphanumeric and `.` symbol
+-- })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+--
+-- PATCH: in order to address the message:
+-- vim.treesitter.query.get_query() is deprecated, use vim.treesitter.query.get() instead. :help deprecated
+--   This feature will be removed in Nvim version 0.10
+local orig_notify = vim.notify
+local filter_notify = function(text, level, opts)
+  -- more specific to this case
+  if type(text) == "string" and (string.find(text, "get_query", 1, true) or string.find(text, "get_node_text", 1, true)) then
+  -- for all deprecated and stack trace warnings
+  -- if type(text) == "string" and (string.find(text, ":help deprecated", 1, true) or string.find(text, "stack trace", 1, true)) then
+    return
+  end
+  orig_notify(text, level, opts)
+end
+vim.notify = filter_notify

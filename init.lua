@@ -8,6 +8,15 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
+-- See help ft-python-indent
+vim.g.python_indent = {
+  open_paren = 0,
+  nested_paren = 'shiftwidth()',
+  closed_paren = {
+    align_last_line = false
+  }
+}
+
 -- [[ Setting options ]]
 require 'options'
  

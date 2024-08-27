@@ -8,7 +8,6 @@ return {
   -- Bracets
   'tpope/vim-surround',
 
-  'scrooloose/nerdtree',
   'scrooloose/nerdcommenter',
   'windwp/nvim-autopairs',
   { -- Set lualine as statusline

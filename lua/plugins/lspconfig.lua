@@ -1,3 +1,5 @@
+-- Config source: https://github.com/dam9000/kickstart-modular.nvim/blob/master/lua/kickstart/plugins/lspconfig.lua
+--
 -- LSP Plugins
 return {
   -- TODO: Do we need this config

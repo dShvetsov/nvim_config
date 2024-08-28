@@ -1,3 +1,5 @@
+-- https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/lazy/snippets.lua
+
 return {
     {
         "L3MON4D3/LuaSnip",

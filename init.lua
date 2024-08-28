@@ -1,3 +1,9 @@
+-- Most of the config is taken from kickstart config https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
+-- Used in version divided in different files: https://github.com/dam9000/kickstart-modular.nvim/tree/master/lua
+--
+-- Part of the plugins was taken from https://github.com/ThePrimeagen/init.lua/tree/master/lua/theprimeagen/lazy
+-- Here also exist more plugins that could be explored
+--
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)

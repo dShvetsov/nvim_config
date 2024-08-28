@@ -1,3 +1,5 @@
+-- Config source: https://github.com/dam9000/kickstart-modular.nvim/blob/master/lua/kickstart/plugins/mini.lua
+--
 return {
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',

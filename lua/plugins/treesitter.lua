@@ -1,3 +1,5 @@
+-- Config source: https://github.com/dam9000/kickstart-modular.nvim/blob/master/lua/kickstart/plugins/treesitter.lua
+--
 return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',

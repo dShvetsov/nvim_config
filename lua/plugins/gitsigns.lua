@@ -1,3 +1,5 @@
+-- Config source: https://github.com/dam9000/kickstart-modular.nvim/blob/master/lua/kickstart/plugins/debug.lua
+--
 -- Here is a more advanced example where we pass configuration
 -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
 --    require('gitsigns').setup({ ... })

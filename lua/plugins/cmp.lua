@@ -1,3 +1,5 @@
+-- Config source: https://github.com/dam9000/kickstart-modular.nvim/blob/master/lua/kickstart/plugins/cmp.lua
+
 return {
   { -- Autocompletion
     'hrsh7th/nvim-cmp',

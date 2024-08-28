@@ -3,6 +3,8 @@
 --
 -- TODO: 1. Fix the <CR> to fit the indentation
 --       2. Learn how to wrap something in bracets
+--
+-- Config source: https://github.com/dam9000/kickstart-modular.nvim/blob/master/lua/kickstart/plugins/autopairs.lua
 
 return {
   'windwp/nvim-autopairs',

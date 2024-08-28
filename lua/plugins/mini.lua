@@ -10,6 +10,18 @@ return {
       --  - ci'  - [C]hange [I]nside [']quote
       require('mini.ai').setup { n_lines = 500 }
 
+      -- Animation of vim actions
+      require('mini.animate').setup()
+      
+
+      -- mini.bracketd
+      -- Allows to go forward/backward with square brackets
+      -- Interesting feature there is forward by file on disk, indent change
+      -- Not sure if I need it, rather not
+      --
+      -- mini.diff can support with diffs and use colors of the lines to show if something was added/removed.
+      -- Could be interesting
+
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren

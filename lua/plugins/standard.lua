@@ -29,4 +29,7 @@ return {
     opts = {},
   },
   { 'numToStr/Comment.nvim', opts = {} },
+
+  -- Highlight todo comments
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 }

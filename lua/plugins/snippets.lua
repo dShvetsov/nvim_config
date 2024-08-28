@@ -1,4 +1,4 @@
--- https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/lazy/snippets.lua
+-- Config source: https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/lazy/snippets.lua
 
 return {
     {

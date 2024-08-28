@@ -1,3 +1,6 @@
+-- Config source: https://github.com/dam9000/kickstart-modular.nvim/blob/master/lua/kickstart/plugins/conform.lua
+
+
 return {
 	{ -- Autoformat
 		"stevearc/conform.nvim",

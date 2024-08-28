@@ -3,6 +3,7 @@
 --
 -- Part of the plugins was taken from https://github.com/ThePrimeagen/init.lua/tree/master/lua/theprimeagen/lazy
 -- Here also exist more plugins that could be explored
+-- For example: harpoon, folke/trouble.nvim
 --
 -- Set <space> as the leader key
 -- See `:help mapleader`

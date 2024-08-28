@@ -1,3 +1,5 @@
+-- Config source: https://github.com/dam9000/kickstart-modular.nvim/blob/master/lua/kickstart/plugins/debug.lua
+--
 -- debug.lua
 --
 -- Shows how to use the DAP plugin to debug your code.

@@ -198,6 +198,7 @@ return {
         -- tsserver = {},
         --
         pylsp = {
+          -- This settings of pylsp isn't working, but I hope it will be fixed eventually
           settings = {
             pylsp = {
               configurationSources = { 'flake8' },
@@ -208,7 +209,7 @@ return {
                 pyflakes = { enabled = false },
 
                 flake8 = { enabled = true },
-                -- pylsp_mypy = { enabled = true },
+                pylsp_mypy = { enabled = true },
               },
             },
           },
@@ -249,7 +250,6 @@ return {
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
-            vim.print(server_name)
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling

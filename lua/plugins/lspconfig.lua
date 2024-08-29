@@ -34,7 +34,9 @@ return {
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
 
-      'artemave/workspace-diagnostics.nvim',
+      -- looks like it slwos down the whole system
+      -- Maybe setup it on demand
+      -- 'artemave/workspace-diagnostics.nvim',
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -160,7 +162,7 @@ return {
             end
 
             -- Run the workspace diagnostics
-            require('workspace-diagnostics').populate_workspace_diagnostics(client, event.buf)
+            --require('workspace-diagnostics').populate_workspace_diagnostics(client, event.buf)
 
         end,
       })
@@ -195,6 +197,22 @@ return {
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         --
+        pylsp = {
+          settings = {
+            pylsp = {
+              configurationSources = { 'flake8' },
+              plugins = {
+                -- included by flake8
+                pycodestyle = { enabled = false },
+                mccabe = { enabled = false },
+                pyflakes = { enabled = false },
+
+                flake8 = { enabled = true },
+                -- pylsp_mypy = { enabled = true },
+              },
+            },
+          },
+        },
 
         lua_ls = {
           -- cmd = {...},
@@ -231,6 +249,7 @@ return {
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
+            vim.print(server_name)
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
@@ -240,57 +259,6 @@ return {
           end,
         },
       }
-      local M = {}
-
-      -- Experimental additional information to detect where a diagnostic message comes from
-      --
-      -- local serverity_map = {
-      --     "DiagnosticError",
-      --     "DiagnosticWarn",
-      --     "DiagnosticInfo",
-      --     "DiagnosticHint",
-      -- }
-      -- local icon_map = {
-      --     "  ",
-      --     "  ",
-      --     "  ",
-      --     "  ",
-      -- }
-
-      -- local function source_string(source)
-      --     return string.format("  [%s]", source)
-      -- -end
-
-      -- M.line_diagnostics = function()
-      --     local bufnr, lnum = unpack(vim.fn.getcurpos())
-      --     local diagnostics = vim.lsp.diagnostic.get_line_diagnostics(bufnr, lnum - 1, {})
-      --     if vim.tbl_isempty(diagnostics) then
-      --         return
-      --     end
-
-      --     local lines = {}
-
-      --     for _, diagnostic in ipairs(diagnostics) do
-      --         table.insert(
-      --             lines,
-      --             icon_map[diagnostic.severity]
-      --                 .. " "
-      --                 .. diagnostic.message:gsub("\n", " ")
-      --                 .. source_string(diagnostic.source)
-      --         )
-      --     end
-
-      --     local floating_bufnr, _ = vim.lsp.util.open_floating_preview(lines, "plaintext", {
-      --         border = vim.g.floating_window_border_dark,
-      --     })
-
-      --     for i, diagnostic in ipairs(diagnostics) do
-      --         local message_length = #lines[i] - #source_string(diagnostic.source)
-      --         vim.api.nvim_buf_add_highlight(floating_bufnr, -1, serverity_map[diagnostic.severity], i - 1, 0, message_length)
-      --         vim.api.nvim_buf_add_highlight(floating_bufnr, -1, "DiagnosticSource", i - 1, message_length, -1)
-      --     end
-      -- end
-      -- vim.keymap.set('n', '<leader>xx', M.line_diagnostics, { desc = 'Show diagnostics sources' })
     end,
   },
 }

@@ -33,5 +33,15 @@ require 'keymaps'
 -- [[ Install `lazy.nvim` plugin manager ]]
 require 'lazy-bootstrap'
 
+
+-- Setup source of diagnostic message for virtual text
+vim.diagnostic.config({
+  float = {
+    prefix = function(diagnostic, i, total)
+        return '(' .. diagnostic['source'] ..'): '
+    end
+  }
+})
+ 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

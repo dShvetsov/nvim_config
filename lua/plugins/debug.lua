@@ -35,6 +35,12 @@ return {
       { '<F1>', dap.step_into, desc = 'Debug: Step Into' },
       { '<F2>', dap.step_over, desc = 'Debug: Step Over' },
       { '<F3>', dap.step_out, desc = 'Debug: Step Out' },
+
+
+      { '<leader>5', dap.continue, desc = 'Debug: Start/Continue' },
+      { '<leader>1', dap.step_into, desc = 'Debug: Step Into' },
+      { '<leader>2', dap.step_over, desc = 'Debug: Step Over' },
+      { '<leader>3', dap.step_out, desc = 'Debug: Step Out' },
       { '<leader>b', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
       {
         '<leader>B',
@@ -45,6 +51,7 @@ return {
       },
       -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
       { '<F7>', dapui.toggle, desc = 'Debug: See last session result.' },
+      { '<leader>7', dapui.toggle, desc = 'Debug: See last session result.' },
       unpack(keys),
     }
   end,
@@ -103,5 +110,16 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+
+    table.insert(require("dap").configurations.python, {
+      type = 'python';
+      request = 'launch';
+      name = 'Launch file with arguments';
+      program = '${file}';
+      args = function()
+        local args_string = vim.fn.input('Arguments: ')
+        return vim.split(args_string, " +")
+      end;
+    })
   end,
 }

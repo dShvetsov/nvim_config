@@ -208,7 +208,10 @@ return {
                 mccabe = { enabled = false },
                 pyflakes = { enabled = false },
 
-                flake8 = { enabled = true },
+                flake8 = {
+                  enabled = true,
+                  ignore = { 'SC200' }
+                },
                 pylsp_mypy = { enabled = true },
               },
             },

@@ -55,7 +55,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Set completeopt to have a better completion experience
 -- See `:help 'completeopt'` for more information
-vim.o.completeopt = 'menuone,noselect,preview'
+vim.o.completeopt = 'menuone,noselect'
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'

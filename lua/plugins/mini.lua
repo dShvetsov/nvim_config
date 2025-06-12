@@ -13,7 +13,7 @@ return {
       require('mini.ai').setup { n_lines = 500 }
 
       -- Animation of vim actions
-      require('mini.animate').setup()
+      -- require('mini.animate').setup()
       
 
       -- mini.bracketd

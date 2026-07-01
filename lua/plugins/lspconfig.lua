@@ -197,26 +197,19 @@ return {
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         --
-        pylsp = {
-          -- This settings of pylsp isn't working, but I hope it will be fixed eventually
+        pyright = {
           settings = {
-            pylsp = {
-              configurationSources = { 'flake8' },
-              plugins = {
-                -- included by flake8
-                pycodestyle = { enabled = false },
-                mccabe = { enabled = false },
-                pyflakes = { enabled = false },
-
-                flake8 = {
-                  enabled = true,
-                  ignore = { 'SC200' }
-                },
-                pylsp_mypy = { enabled = true },
+            python = {
+              analysis = {
+                -- good defaults; tweak later if you want stricter typing
+                typeCheckingMode = "basic", -- or "off" / "strict"
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
               },
             },
           },
         },
+        ruff = {},
 
         lua_ls = {
           -- cmd = {...},

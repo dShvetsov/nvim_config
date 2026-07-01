@@ -3,7 +3,7 @@
 return {
   {
    'pwntester/octo.nvim',
-    enabled = true,  -- disable because it may cause some errors
+    enabled = false,  -- disable because it may cause some errors
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',

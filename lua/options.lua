@@ -69,6 +69,6 @@ vim.opt.scrolloff = 5
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
-vim.spell.spelling = 'en_us'
+vim.opt.spelllang = 'en_us'
 
 -- vim: ts=2 sts=2 sw=2 et
